@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useDispatch } from "react-redux";
-import { deleteContact } from "redux/ContactsSlice";
+import { deleteContact } from "redux/ContactsApi";
 
 import Button from "../Button";
 import css from "./Contact.module.css";
