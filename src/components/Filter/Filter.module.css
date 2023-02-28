@@ -1,0 +1,21 @@
+.filter{
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+
+.input{
+    padding: 4px;
+    font-size: 16px;
+    height: 25px;
+    margin-left: 15px;
+
+    border-radius: 4px;
+    border-style: none;
+    background: rgb(220, 232, 242);
+}
+
+.input-focus{
+    border-style: none;
+    background-color: rgb(200, 233, 233);
+}
