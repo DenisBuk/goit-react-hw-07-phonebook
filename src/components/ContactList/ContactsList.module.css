@@ -1,6 +1,7 @@
 .ContactList {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     width: 400px;
     padding: 20px;
     border: 1px solid black;

@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     useAddContactMutation,
     useGetContactQuery
-} from '../../redux/'
-import Button from "../Button";
+} from '../../redux/ContactsApi';
+import { toast }  from 'react-toastify';
 import css from "./ContactForm.module.css";
 
 function ContactForm() {
-    const contacts = useSelector((state) => state.contacts);
-    const dispatch = useDispatch();
-    const [name, setName] = useState("");
-    const [number, setNumber] = useState("");
+    const [addContacts, { isLoading, isSuccess, error }] =
+        useAddContactsMutation();
+    const {data } = useGetContactQuery();
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('');
+    const [nameForToast, setnameForToast] = useState('');
 
-
+    useEffect(() => {
+        isSuccess &&
+            toast.success(`${nameForToast} added to contact book`, {
+                autoClose: 800,
+            });
+        error && toast.error('oops something went wrong');
+    }, [error, isSuccess, nameForToast]);
+    
 
     const handleInputChange = ({ currentTarget: { name, value } }) => {
         switch (name) {
@@ -27,24 +36,12 @@ function ContactForm() {
         }
     };
 
-
-
-
     const onFormSubmit = e => {
 
         e.preventDefault();
+        setnameForToast(name);
 
-        const isExist = contacts.find
-            (item => item.name.toLowerCase() === name.toLowerCase());
-
-        if (isExist) {
-            return alert(`${name} is alredy in contacts`);
-        }
-
-
-        dispatch(addContact({ name, number }));
-        setName("");
-        setNumber("");
+      data.
     };
 
     return (
