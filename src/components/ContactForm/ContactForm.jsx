@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-    useAddContactMutation,
+    useAddContactsMutation,
     useGetContactQuery
 } from '../../redux/ContactsApi';
 import { toast }  from 'react-toastify';
@@ -41,11 +41,19 @@ function ContactForm() {
         e.preventDefault();
         setnameForToast(name);
 
-      data.
+        data.find(item => item.name.toLowerCase() !== name.toLowerCase())
+            ? addContacts({
+                name: name,
+                phone: number,
+            })
+            : toast.error(`${name} is already in contacts!!!`);
+        
+        setName('');
+        setNumber('');
     };
 
     return (
-        <form onSubmit={onFormSubmit}>
+        <form autoComplete="off" onSubmit={onFormSubmit}>
             <label className={css.form}>
                 <p>Name</p>
                 <input
@@ -70,11 +78,13 @@ function ContactForm() {
                     required
                     className={css.input}
                 />
-                <Button
-                    text="Add Contact"
+                <button
+                    className={ css.button}
                     type="submit"
                     disabled={number && name ? false : true}
-                />
+                >
+                    { isLoading ? 'Add Contact...Spiner' : 'Add Contact'}
+                    </button>
             </label>
         </form>
     );
