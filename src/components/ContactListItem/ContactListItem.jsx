@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { toast } from 'react-toastify';
-import css from "./Contact.module.css";
+import css from "./ContactListItem.module.css";
 
 import { useDeleteContactsMutation } from '../../redux/ContactsApi';
 
