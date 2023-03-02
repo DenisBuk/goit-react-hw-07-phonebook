@@ -5,7 +5,7 @@ export const ContactsApi = createApi({
     reducerPath: 'contactsApi',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://63fdf4c8cd13ced3d7c32c00.mockapi.io/contacts/v1'
+        baseUrl: 'https://6400613829deaba5cb360622.mockapi.io/contacts/v1'
     }),
 
     tagTypes: ['Contacts'],

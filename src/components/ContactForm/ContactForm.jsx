@@ -9,7 +9,7 @@ import css from "./ContactForm.module.css";
 function ContactForm() {
     const [addContacts, { isLoading, isSuccess, error }] =
         useAddContactsMutation();
-    const {data } = useGetContactQuery();
+    const { data } = useGetContactQuery();
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
     const [nameForToast, setnameForToast] = useState('');
@@ -41,12 +41,14 @@ function ContactForm() {
         e.preventDefault();
         setnameForToast(name);
 
-        data.find(item => item.name.toLowerCase() !== name.toLowerCase())
+        data.map(item => item.name.toLowerCase() !== name.toLowerCase())
             ? addContacts({
                 name: name,
                 phone: number,
             })
             : toast.error(`${name} is already in contacts!!!`);
+        
+        console.log(data);
         
         setName('');
         setNumber('');
