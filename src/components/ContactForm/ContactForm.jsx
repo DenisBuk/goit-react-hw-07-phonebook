@@ -3,7 +3,7 @@ import {
     useAddContactsMutation,
     useGetContactQuery
 } from '../../redux/ContactsApi';
-import { toast }  from 'react-toastify';
+import { toast } from 'react-toastify';
 import css from "./ContactForm.module.css";
 
 function ContactForm() {
@@ -21,7 +21,7 @@ function ContactForm() {
             });
         error && toast.error('oops something went wrong');
     }, [error, isSuccess, nameForToast]);
-    
+
 
     const handleInputChange = ({ currentTarget: { name, value } }) => {
         switch (name) {
@@ -41,15 +41,15 @@ function ContactForm() {
         e.preventDefault();
         setnameForToast(name);
 
-        data.map(item => item.name.toLowerCase() !== name.toLowerCase())
+        data.every(item => item.name.toLowerCase() !== name.toLowerCase())
             ? addContacts({
                 name: name,
                 phone: number,
             })
             : toast.error(`${name} is already in contacts!!!`);
-        
+
         console.log(data);
-        
+
         setName('');
         setNumber('');
     };
@@ -81,12 +81,12 @@ function ContactForm() {
                     className={css.input}
                 />
                 <button
-                    className={ css.button}
+                    className={css.button}
                     type="submit"
                     disabled={number && name ? false : true}
                 >
-                    { isLoading ? 'Add Contact...Spiner' : 'Add Contact'}
-                    </button>
+                    {isLoading ? 'Add Contact...Spiner' : 'Add Contact'}
+                </button>
             </label>
         </form>
     );
